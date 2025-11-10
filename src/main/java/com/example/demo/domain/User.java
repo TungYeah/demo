@@ -30,6 +30,9 @@ public class User {
     @NotBlank(message = "ko dc de trong")
     private String password;
 
+    @NotBlank(message = "ko dc de trong")
+    private String phone;
+
    private int age;
 
    @Enumerated(EnumType.STRING)
