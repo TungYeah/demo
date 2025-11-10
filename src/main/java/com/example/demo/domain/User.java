@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,9 +31,9 @@ public class User {
     @NotBlank(message = "ko dc de trong")
     private String password;
 
-    @NotBlank(message = "ko dc de trong")
+    @NotBlank(message = "Số điện thoại không được để trống")
+    @Pattern(regexp = "^(0|\\+84)(\\d{9})$", message = "Số điện thoại không hợp lệ, phải bắt đầu bằng 0 hoặc +84 và có 10 số")
     private String phone;
-
    private int age;
 
    @Enumerated(EnumType.STRING)
