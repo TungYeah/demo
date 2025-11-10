@@ -17,10 +17,10 @@ public class UserService {
 
     public User createUser(User user){
         if (userRepository.existsByEmail(user.getEmail())) {
-            throw new IllegalArgumentException("Email already exists");
+            throw new IllegalArgumentException("Email tồn tại");
         }
         if(userRepository.existsByPhone(user.getPhone())){
-            throw new IllegalArgumentException("Email already exists");
+            throw new IllegalArgumentException("Email tồn tại");
         }
         return userRepository.save(user);
     }
@@ -31,13 +31,13 @@ public class UserService {
 
     public User getUserById(long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("User not found with id: " + id));
+                .orElseThrow(() -> new NoSuchElementException("Ko thấy id: " + id));
     }
 
 
     public User updateUser(long id, User updatedUser) {
         User existingUser = userRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("User not found with id: " + id));
+                .orElseThrow(() -> new NoSuchElementException("Ko thấy id: " + id));
 
         existingUser.setName(updatedUser.getName());
         existingUser.setEmail(updatedUser.getEmail());
@@ -48,7 +48,7 @@ public class UserService {
 
     public void deleteUser(long id) {
         if (!userRepository.existsById(id)) {
-            throw new NoSuchElementException("User not found with id: " + id);
+            throw new NoSuchElementException("Ko thấy id: " + id);
         }
         userRepository.deleteById(id);
     }
