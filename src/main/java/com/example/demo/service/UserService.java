@@ -20,7 +20,10 @@ public class UserService {
             throw new IllegalArgumentException("Email tồn tại");
         }
         if(userRepository.existsByPhone(user.getPhone())){
-            throw new IllegalArgumentException("Email tồn tại");
+            throw new IllegalArgumentException("Phone tồn tại");
+        }
+        if(userRepository.existsByName(user.getName())){
+            throw new IllegalArgumentException("Name tồn tại");
         }
         return userRepository.save(user);
     }
